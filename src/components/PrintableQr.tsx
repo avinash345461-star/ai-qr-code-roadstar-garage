@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import QRCode from 'qrcode';
 import { Printer, Download, Sparkles, Sliders, Smartphone, Star } from 'lucide-react';
+import { LOGO_DATA_URL } from '../config/logoData';
 
 interface PrintableQrProps {
   businessName: string;
@@ -136,8 +137,7 @@ export const PrintableQr: React.FC<PrintableQrProps> = ({
         ctx.fill();
 
         const logo = new Image();
-        logo.crossOrigin = 'anonymous';
-        logo.src = '/logo.jpg';
+        logo.src = LOGO_DATA_URL;
         logo.onload = () => {
           ctx.save();
           ctx.beginPath();
@@ -277,7 +277,7 @@ export const PrintableQr: React.FC<PrintableQrProps> = ({
         {/* Brand Header */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', marginBottom: '10px' }}>
           <img
-            src="/logo.jpg"
+            src={LOGO_DATA_URL}
             alt={businessName}
             style={{
               width: '56px',

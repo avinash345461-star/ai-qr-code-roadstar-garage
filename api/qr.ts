@@ -1,6 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import QRCode from 'qrcode';
-import { CLIENT_CONFIG } from '../../src/config/clientConfig';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {
@@ -22,8 +21,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(200).json({
       url: targetUrl,
       qrDataUrl,
-      businessName: CLIENT_CONFIG.businessName,
-      instruction: CLIENT_CONFIG.shortScanInstruction,
+      businessName: 'ROADSTAR GARAGE',
+      instruction: 'Scan with your smartphone camera to write your review',
     });
   } catch (err: any) {
     return res.status(500).json({ error: 'Failed to generate QR code' });

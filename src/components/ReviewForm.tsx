@@ -56,8 +56,20 @@ export const ReviewForm: React.FC<ReviewFormProps> = ({
       setIsFallback(Boolean(data.isFallback));
       setIsApproved(true);
     } catch (err: any) {
-      console.error('Error generating review:', err);
-      setGenerationError(err.message || 'Unable to connect to the review server.');
+      console.warn('Network/server draft fallback triggered:', err);
+      // Seamless client-side fallback so customer review is never blocked
+      const fallbackTemplates = [
+        `I gave my car to Roadstar Garage for complete servicing, robotic wash, and interior cleaning. The staff were exceptionally polite and transparent with the pricing. Vehicle is running super smooth and spotless inside and out!`,
+        `Gave my vehicle to Roadstar Garage for ceramic coating and foam wash. The glossy finish is top notch, the mechanics are honest and skilled, and the rates are genuinely affordable. Highly recommend!`,
+        `Visited Roadstar Garage for periodic car servicing and underbody cleaning. Punctual, courteous team, spotless workshop, and zero hidden charges. Best auto care experience!`,
+      ];
+      const customFallback = customerNotes.trim()
+        ? `I gave my vehicle to Roadstar Garage for ${customerNotes.trim()}. The team was very polite, the job was done thoroughly, and the pricing was completely honest and fair. Great service!`
+        : fallbackTemplates[Math.floor(Math.random() * fallbackTemplates.length)];
+
+      setDraft(customFallback);
+      setIsFallback(true);
+      setIsApproved(true);
     } finally {
       setIsGenerating(false);
     }

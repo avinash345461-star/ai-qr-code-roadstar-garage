@@ -3,6 +3,7 @@ import { ReviewForm } from './components/ReviewForm';
 import { PrintableQr } from './components/PrintableQr';
 import { QrCode, MessageSquareHeart } from 'lucide-react';
 import { CLIENT_CONFIG } from './config/clientConfig';
+import { LOGO_DATA_URL } from './config/logoData';
 
 export function App() {
   const [activeTab, setActiveTab] = useState<'review' | 'qr'>('review');
@@ -36,7 +37,7 @@ export function App() {
       <header className="site-header">
         <div className="header-brand">
           <div className="brand-logo-container">
-            <img src="/logo.jpg" alt={`${businessName} Logo`} className="brand-logo-img" />
+            <img src={LOGO_DATA_URL} alt={`${businessName} Logo`} className="brand-logo-img" />
           </div>
           <div className="brand-info">
             <h1>{businessName}</h1>
@@ -90,7 +91,7 @@ export function App() {
       {/* Minimal Footer */}
       <footer className="site-footer">
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
-          <img src="/logo.jpg" alt="Logo" style={{ width: '22px', height: '22px', borderRadius: '4px' }} />
+          <img src={LOGO_DATA_URL} alt="Logo" style={{ width: '22px', height: '22px', borderRadius: '4px' }} />
           <strong>{businessName}</strong> • Official Customer Review Portal
         </div>
         <div style={{ marginTop: '4px', fontSize: '0.72rem' }}>
