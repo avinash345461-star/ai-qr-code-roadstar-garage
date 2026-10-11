@@ -7,7 +7,7 @@ interface PrintableQrProps {
   tagline: string;
   scanInstruction: string;
   targetUrl: string;
-  onTargetUrlChange?: (newUrl) => void;
+  onTargetUrlChange?: (newUrl: string) => void;
 }
 
 export const PrintableQr: React.FC<PrintableQrProps> = ({
